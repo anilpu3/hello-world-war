@@ -1,1 +1,31 @@
+pipeline {
+    agent none
+    stages {
+      agent { label 'java' } 
+      stage('checkout') 
+      { 
+            steps {
+              sh "git clone https://github.com/anilpu3/hello-world-war"
+              }
+              }
+              stage ('build')
+              {
+              steps {
+              sh "mvn clean package"
+              
+              
+              
+            }
+        }
 
+
+#any - pipeline lvl - i can run in any available node or slave based on the load
+#label - both pipeline & stages - it wil run on specific node or slave
+#none - mandatory to define each and every stages - mentioned nodes at each and every stages
+#docker - image name as slave to run the job 
+
+pipeline
+agent (any, label, none or docker)
+stages
+stage
+steps
