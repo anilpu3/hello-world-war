@@ -1,4 +1,5 @@
 pipeline {
+cleanWS
 agent { label "slave" }
 stages {
 stage( "Maven Installation" ) {
