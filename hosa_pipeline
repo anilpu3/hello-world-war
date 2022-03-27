@@ -4,7 +4,10 @@ stages {
 stage( "Maven Installation" ) {
 steps {
 sh "sudo apt install maven"
-cleanws
+post {
+always {
+cleanWs()
+}
 }
 }
 }
