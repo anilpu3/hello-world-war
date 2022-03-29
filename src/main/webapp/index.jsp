@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Hello World!</title>
+<title>DevOps Gelayaru!</title>
 </head>
 <body>
 	<h1>Hello World!</h1>
