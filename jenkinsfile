@@ -1,5 +1,8 @@
 pipeline{
       agent { label 'docker' }
+      environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerpasswrord')
+    }
       stages{
       stage('check out'){
                   steps{
@@ -24,7 +27,7 @@ pipeline{
             stage('deploy'){
                   agent { label 'slave1' }
                   steps{
-                        sh "docker login -u anilpu3 -p $unil@nil@321654"
+                        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
                         sh "docker pull anilpu3/docker:1.0"
                         //sh "docker rm -f trail1"
                         sh "docker run -d -p 8085:8080 --name trail1 anilpu3/docker:1.0"
