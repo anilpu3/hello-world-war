@@ -34,3 +34,5 @@ stage('Build Docker Image') {
     }*/ 
 }    
 }
+}
+}
