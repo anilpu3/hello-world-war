@@ -35,3 +35,4 @@ stage('Docker hub login and Publish') {
              } 
 }    
 }
+}
