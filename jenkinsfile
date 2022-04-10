@@ -33,6 +33,14 @@ stage('Docker hub login and Publish') {
          sh "docker push anilpu3/cicd-build-docker-repo:1.0"   
     }
     
+ stage('Image pull from Docker Hub')
+        steps {
+        def dockerRun = 'docker run -p 8050:8080 -d --name cicd-build-docker-repo anilpu3/cicd-build-docker-repo:1.0'
+            
+    
+    
+    
+    
 
       } 
               
