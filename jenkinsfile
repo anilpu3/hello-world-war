@@ -1,11 +1,6 @@
 pipeline {
     agent any
-    
-    environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub-anilpu3@gmail.com')
-    }
-    
-    stages {
+   stages {
         stage('Checkout') { 
             steps {
               sh "git clone https://github.com/anilpu3/hello-world-war"
@@ -30,9 +25,10 @@ stage('Build Docker Image') {
 
 stage('Docker hub login and Publish') {
             steps {
-          sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"       
-          sh "docker tag build_cicd:1.0 anilpu3/cicd-build-docker-repo build_cicd:1.1"
-          sh "docker push build_cicd:1.0 anilpu3/cicd-build-docker-repo build_cicd:1.1"   
+          withCredentials([string(credentialsId: 'anilpu3', variable: 'password')]) { 
+          
+         sh "docker tag build_cicd:1.0 anilpu3/cicd-build-docker-repo build_cicd:1.1"
+         sh "docker push build_cicd:1.0 anilpu3/cicd-build-docker-repo build_cicd:1.1"   
     }
     
 
