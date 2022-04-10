@@ -29,8 +29,8 @@ stage('Build Docker Image') {
           sh "docker push build_cicd:1.0 anilpu3/cicd-build-docker-repo build_cicd:1.1"
     }
 
-      } */         
-        
-    }
-}
+      } 
+              
+    }*/ 
+}    
 }
