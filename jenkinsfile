@@ -35,9 +35,10 @@ stage('Docker hub login and Publish') {
     
  stage('Image pull from Docker Hub')
         steps {
-        def dockerRun = 'docker run -p 8050:8080 -d --name cicd-build-docker-repo anilpu3/cicd-build-docker-repo:1.0'
-            
-    
+        def dockerRun = 'docker run -p 8050:8080 -d --name cicd-build-docker-repo anilpu3/cicd-build-docker-repo:1.0'           
+   sshagent(['ubuntu_slave']) {
+    sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.34.244 ${dockerRun}"
+    }
     
     
     
