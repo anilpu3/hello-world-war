@@ -14,10 +14,7 @@ pipeline {
 stage('Build') {     
             steps {
                 sh "cp /home/ubuntu/Dockerfile /var/lib/jenkins/workspace/testin"
-              }
-              }
-stage('Build Docker Image') {
-         steps {
+  
          sh "docker build -t build_cicd:1.0 /var/lib/jenkins/workspace/testin"
         }
       }
@@ -30,7 +27,7 @@ stage('Docker hub login and Publish') {
     }
     }
    
-  stage('Pull and Deploy') {  
+  stage('Deploy') {  
   agent { label 'docker' }
         steps {
         sh "docker pull anilpu3/cicd-build-docker-repo:1.0"
