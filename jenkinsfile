@@ -11,6 +11,8 @@ stage('Maven Build') {
               sh "mvn clean package"
             }
         }  
+        
+ stage('Copying docker file to target folder') {       
               
 stage('Build Docker Image') {
          steps {
