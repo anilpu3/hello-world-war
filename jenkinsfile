@@ -6,21 +6,30 @@ pipeline {
               sh "git clone https://github.com/anilpu3/hello-world-war"
             }
         }
+stage('Maven Build') { 
+            steps {
+              sh "mvn clean package"
+            }
+        }  
+        
+ stage('Copying docker file to target folder') {     
+            steps {
+                sh "cp /home/ubuntu/Dockerfile /var/lib/jenkins/workspace/testin/target"
               
 stage('Build Docker Image') {
          steps {
-         sh "docker build -t build_cicd:1.0 /var/lib/jenkins/workspace/testin"
+         sh "docker build -t build_cicd:1.0 /var/lib/jenkins/workspace/testin/target"
         }
       }
- stage('Docker hub login and Publish') {
+
+/* stage('Docker hub login and Publish') {
             steps {
             withCredentials([string(credentialsId: 'anilpu3', variable: 'dochubpasswd')]) {
           sh "docker login -u anilpu3@gmail.com -p ${dochubpasswd}"
-          sh "docker tag build_cicd:1.0 build_cicd:1.1"
-          sh "docker push build_cicd:1.0 anilpu3/cicd-build-docker-repo build_cicd:1.1
+          sh "docker push build_cicd:1.0 anilpu3/cicd-build-docker-repo build_cicd:1.1"
     }
 
-      }          
+      } */         
         
     }
 }
