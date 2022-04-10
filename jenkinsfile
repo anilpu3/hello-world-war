@@ -1,37 +1,34 @@
-pipeline{
-      agent { label 'docker' }
-      environment {
+pipeline {
+    agent any    
+    environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerpasswrord')
     }
-      stages{
-      stage('check out'){
-                  steps{
-                  sh "rm -rf hello-world-war"
-                  sh "git clone https://github.com/anilpu3/hello-world-war.git"
-                  }
-                  }
-      stage('build'){
-      steps{
-      sh "pwd"
-      sh "ls"
-      sh "cd hello-world-war"
-      sh "docker build -t anilpu3/docker:1.0 ."
-      }
-      }
-       stage('publish'){
-                  steps{
-                        sh "docker login -u anilpu3 -p $unil@nil@321654"
-                        sh "docker push anilpu3/docker:1.0"
-                  }
+   stages {
+        stage('Checkout') { 
+            steps {
+              sh "git clone https://github.com/anilpu3/hello-world-war"
             }
-            stage('deploy'){
-                  agent { label 'slave1' }
-                  steps{
-                        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                        sh "docker pull anilpu3/docker:1.0"
-                        //sh "docker rm -f trail1"
-                        sh "docker run -d -p 8085:8080 --name trail1 anilpu3/docker:1.0"
-                  }
-            }
+        }
+        
+stage('Build') {     
+            steps {
+                sh "cp /home/ubuntu/Dockerfile /var/lib/jenkins/workspace/testin"
+              }
+              }
+stage('Build Docker Image') {
+         steps {
+         sh "docker build -t build_cicd:1.0 /var/lib/jenkins/workspace/testin"
+        }
       }
-      }
+
+stage('Docker hub login and Publish') {
+            steps {
+         sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+         sh "docker tag build_cicd:1.0 anilpu3/cicd-build-docker-repo:1.0"
+         sh "docker push anilpu3/cicd-build-docker-repo:1.0"   
+    }
+    
+ 
+             } 
+}    
+}
