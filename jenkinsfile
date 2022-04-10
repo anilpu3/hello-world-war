@@ -22,7 +22,7 @@ pipeline{
                   }
             }
             stage('deploy'){
-                  agent { label 'docker' }
+                  agent { label 'slave1' }
                   steps{
                         sh "docker login -u anilpu3 -p $unil@nil@321654"
                         sh "docker pull anilpu3/docker:1.0"
