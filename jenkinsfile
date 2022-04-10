@@ -30,7 +30,7 @@ stage('Docker hub login and Publish') {
     }
     }
    
-  stage('Pull') {  
+  stage('Pull and Deploy') {  
   agent { label 'docker' }
         steps {
         sh "docker pull anilpu3/cicd-build-docker-repo:1.0"
