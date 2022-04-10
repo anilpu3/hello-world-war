@@ -16,7 +16,8 @@ stage('Build Docker Image') {
             steps {
             withCredentials([string(credentialsId: 'anilpu3', variable: 'dochubpasswd')]) {
           sh "docker login -u anilpu3@gmail.com -p ${dochubpasswd}"
-          sh "docker push build_cicd:1.0 anilpu3/cicd-build-docker-repo build_cicd:1.1"
+          sh "docker tag build_cicd:1.0 build_cicd:1.1"
+          sh "docker push build_cicd:1.0 anilpu3/cicd-build-docker-repo build_cicd:1.1
     }
 
       }          
