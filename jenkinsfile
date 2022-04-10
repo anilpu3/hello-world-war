@@ -6,13 +6,9 @@ pipeline {
               sh "git clone https://github.com/anilpu3/hello-world-war"
             }
         }
-stage('Maven Build') { 
-            steps {
-              sh "mvn clean package"
-            }
-        }  
-        
- stage('Copying docker file to target folder') {       
+
+
+
               
 stage('Build Docker Image') {
          steps {
