@@ -34,7 +34,8 @@ stage('Docker hub login and Publish') {
   agent { label 'docker' }
         steps {
         sh "docker pull anilpu3/cicd-build-docker-repo:1.0"
-        sh "docker run -d -p 8999:8080 anilpu3/cicd-build-docker-repo:1.0"
+        sh "docker rm -f por"
+        sh "docker run -d -p 8877:8080 --name por anilpu3/cicd-build-docker-repo:1.0
              } 
 }    
 }
