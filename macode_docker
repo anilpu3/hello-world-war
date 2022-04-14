@@ -16,7 +16,7 @@ stage('Build') {
                 sh "cp /home/ubuntu/Dockerfile /var/lib/jenkins/workspace/testin"
               }
               }
-stage('Build Docker Image') {
+stage('Build Docker Images') {
          steps {
          sh "docker build -t build_cicd:1.0 /var/lib/jenkins/workspace/testin"
         }
