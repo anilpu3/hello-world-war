@@ -1,5 +1,5 @@
 node {
-stage ('checkout') {
-sh 'git clone https://github.com/anilpu3/Ma_Project.git'
+stage ('create directory') {
+sh 'mkdir -p practise'
 }
 }
