@@ -13,9 +13,9 @@ pipeline {
         
 stage('Build') {     
             steps {
-                sh "cp /home/ubuntu/Dockerfile /var/lib/jenkins/workspace/testin"
+                sh "cd /var/lib/jenkins/workspace/testin"
   
-         sh "docker build -t build_cicd:1.0 /var/lib/jenkins/workspace/testin"
+         sh "docker build -t build_cicd:1.0 ."
         }
       }
 
@@ -28,11 +28,11 @@ stage('Docker hub login and Publish') {
     }
    
   stage('Deploy') {  
-  agent { label 'docker' }
+  agent { label 'kuber' }
         steps {
         sh "docker pull anilpu3/cicd-build-docker-repo:1.0"
-        sh "docker rm -f por"
-        sh "docker run -d -p 8877:8080 --name por anilpu3/cicd-build-docker-repo:1.0"
+        sh "docker rm -f port"
+        sh "docker run -d -p 9090:8080 --name port anilpu3/cicd-build-docker-repo:1.0"
              } 
 }    
 }
