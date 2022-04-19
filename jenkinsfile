@@ -38,6 +38,7 @@ pipeline {
         sh " kubectl apply -f /root/deployment.yml"
         sh " kubectl get pod "
         sh " kubectl get deployment "
+        sh " kubectl get pod "
         sh " kubectl apply -f /root/tomcat_nodeportsvc.yml "
         sh " kubectl get svc "
         // sh "docker rm -f port"
