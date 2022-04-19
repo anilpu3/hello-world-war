@@ -34,11 +34,11 @@ pipeline {
         
         sh "docker pull anilpu3/cicd-build-docker-repo:1.0"
         //sh " cd /root "
-        // sh " sed -i '24s/tomcat:9.0/tomcat:latest/Ig' deployment.yml "      
+        sh " sed -i '24s/tomcat:9.0/tomcat:latest/Ig' /root/deployment.yml "      
         sh " kubectl apply -f /root/deployment.yml"
         sh " kubectl get pod "
         sh " kubectl get deployment "
-        sh " kubectl apply -f tomcat_nodeportsvc.yml "
+        sh " kubectl apply -f /root/tomcat_nodeportsvc.yml "
         sh " kubectl get svc "
         // sh "docker rm -f port"
         // sh "docker run -d -p 9090:8080 --name port anilpu3/cicd-build-docker-repo:1.0"
