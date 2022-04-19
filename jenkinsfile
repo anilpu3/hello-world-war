@@ -34,7 +34,7 @@ stage('Docker hub login and Publish') {
         
         sh "docker pull anilpu3/cicd-build-docker-repo:1.0"
         sh " cd /root "
-        sh " sed -i 's/tomcat:9.0/tomcat:latest/Ig' deployment.yml "      
+        sh " sed -i '24s/tomcat:9.0/tomcat:latest/Ig' deployment.yml "      
         sh " kubectl apply -f deployment.yml"
         sh " kubectl get pod "
         sh " kubectl get deployment "
