@@ -13,19 +13,19 @@ pipeline {
         }
         
 stage('Build') {     
-            steps {
-                sh "cd /var/lib/jenkins/workspace/testin"
+//            steps {
+//                sh "cd /var/lib/jenkins/workspace/testin"
   
-         sh "docker build -t build_cicd:1.0 ."
-        }
+//         sh "docker build -t build_cicd:1.0 ."
+//        }
       }
 
 stage('Docker hub login and Publish') {
-            steps {
-         sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-         sh "docker tag build_cicd:1.0 anilpu3/cicd-build-docker-repo:1.0"
-         sh "docker push anilpu3/cicd-build-docker-repo:1.0"   
-    }
+ //           steps {
+   //      sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+     //    sh "docker tag build_cicd:1.0 anilpu3/cicd-build-docker-repo:1.0"
+      //   sh "docker push anilpu3/cicd-build-docker-repo:1.0"   
+   // }
     }
    
   stage('Deploy') {  
